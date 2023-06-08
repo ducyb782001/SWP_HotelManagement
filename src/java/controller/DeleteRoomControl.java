@@ -33,7 +33,7 @@ public class DeleteRoomControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         int roomno = Integer.parseInt(request.getParameter("roomdel"));
         RoomDAO dao = new RoomDAO();
-        dao.delete(roomno);
+//        dao.delete(roomno);
           
         response.sendRedirect("room");
      

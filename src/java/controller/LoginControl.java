@@ -4,7 +4,7 @@
  */
 package controller;
 
-import dal.AccountDAO;
+import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Account;
+import model.User;
 
 /**
  *
@@ -81,21 +81,26 @@ public class LoginControl extends HttpServlet {
         response.addCookie(p);
         response.addCookie(r);
         
-        AccountDAO accdao = new AccountDAO();
-        Account a = accdao.login(username, password);
-        if (a == null) {
+        UserDAO uDao = new UserDAO();
+        User user = uDao.getUserByUidAndPws(username, password);
+        if (user == null) {
             request.setAttribute("mess", "Wrong username or password");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
             HttpSession session = request.getSession();
-            session.setAttribute("acc", a);
+            session.setAttribute("acc", user);
             session.setMaxInactiveInterval(1000);
             //cookie
-
             response.sendRedirect("home");
 
         }
 
+    }
+    
+    public static void main(String[] args) {
+        UserDAO uDao = new UserDAO();
+        User user = uDao.getUserByUidAndPws("linhdt@gmail.com", "123");
+        System.out.println(user.getEmail());
     }
 
     /**

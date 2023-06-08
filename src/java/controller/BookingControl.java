@@ -5,7 +5,6 @@
 
 package controller;
 
-import dal.ReservationDAO;
 import dal.RoomDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,7 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Reservation;
 import model.Room;
-import model.RoomTypes;
 
 /**
  *
@@ -83,11 +81,8 @@ public class BookingControl extends HttpServlet {
         String bookingDate = request.getParameter("bookingdate");
         String datein = request.getParameter("datein");
         String dateout = request.getParameter("dateout");
-        int totalday = dao.getDay(datein, dateout);
+//        int totalday = dao.getDay(datein, dateout);
         
-        ArrayList<RoomTypes> listRoomtypes= dao.getAllRoomType();
-
-        request.setAttribute("listRoomType", listRoomtypes);
         request.getRequestDispatcher("roombooking.jsp").forward(request, response);
         
     }

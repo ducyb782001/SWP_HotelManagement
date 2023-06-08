@@ -23,12 +23,12 @@
                     <nav class="mainmenu">
                         <ul>
                             <li class="active"><a href="./home">Home</a></li>
-                            <li><a href="roomtype">Rooms</a></li>
+                            <li><a href="room">Rooms</a></li>
                             <li><a href="./about-us.jsp">About Us</a></li>
 
                             <li><a href="./blog.jsp">News</a></li>
                             <li><a href="./contact.jsp">Contact</a></li>
-                                <c:if test="${sessionScope.acc.role == 1}">
+                                <c:if test="${sessionScope.acc.role.id == 1}">
                                 <li><a href="room">Admin Account</a>
                                     <ul class="dropdown">
                                         <li><a href="loadaccount">User</a></li>
@@ -38,11 +38,11 @@
                                     </ul>
                                 </li>
                                 </c:if>
-                                <c:if test="${sessionScope.acc.role == 0}">
+                                <c:if test="${sessionScope.acc.role.id == 7}">
                                 <li><a href="room">Users</a>
                                     <ul class="dropdown">
                                         <li><a href="information">Information</a></li>
-                                        <li><a href="yourroom?id=${sessionScope.acc.accountId}">Your room</a></li>
+                                        <li><a href="yourroom?id=${sessionScope.acc.id}">Your room</a></li>
                                         <li><a href="#"></a></li>
                                     </ul>
                                 </li>

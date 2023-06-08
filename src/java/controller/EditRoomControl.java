@@ -73,7 +73,7 @@ public class EditRoomControl extends HttpServlet {
         int roomNo = Integer.parseInt(request.getParameter("room"));
         String type = request.getParameter("type");
         RoomDAO dao = new RoomDAO();
-        dao.updateRoom(typeId, roomNo, type);
+//        dao.updateRoom(typeId, roomNo, type);
         response.sendRedirect("room");
         
     }

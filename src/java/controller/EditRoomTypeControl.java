@@ -76,7 +76,7 @@ public class EditRoomTypeControl extends HttpServlet {
       String image = request.getParameter("image");
       String details = request.getParameter("details");
       RoomDAO dao = new RoomDAO();
-      dao.updateRoomType(typeid, name, bed, maxop, price, service, image, details);
+//      dao.updateRoomType(typeid, name, bed, maxop, price, service, image, details);
       response.sendRedirect("room");
     }
 

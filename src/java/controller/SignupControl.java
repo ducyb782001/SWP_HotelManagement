@@ -5,14 +5,12 @@
 
 package controller;
 
-import dal.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Account;
 
 /**
  *
@@ -78,20 +76,20 @@ public class SignupControl extends HttpServlet {
         if(!pass.equals(repass)){
             request.setAttribute("mess1", "Password does not match");
             request.getRequestDispatcher("signup.jsp").forward(request, response);
-        }else{
-            AccountDAO accdao = new AccountDAO();
-            Account a = accdao.checkAccountExist(username);
-            if(a == null){
-                Account b = new Account(username, pass, name, email, phone,cmnd, 0);
-                accdao.signup(b);
-                request.setAttribute("mess3", "Successfull!!");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-
-            }else{
-                request.setAttribute("mess2", "User Name already exists");
-                request.getRequestDispatcher("signup.jsp").forward(request, response);
-            }
         }
+//        else{
+//            AccountDAO accdao = new AccountDAO();
+//            Account a = accdao.checkAccountExist(username);
+//            if(a == null){
+//                Account b = new Account(username, pass, name, email, phone,cmnd, 0);
+//                accdao.signup(b);
+//                request.setAttribute("mess3", "Successfull!!");
+//                request.getRequestDispatcher("login.jsp").forward(request, response);
+//            }else{
+//                request.setAttribute("mess2", "User Name already exists");
+//                request.getRequestDispatcher("signup.jsp").forward(request, response);
+//            }
+//        }
         
     }
 

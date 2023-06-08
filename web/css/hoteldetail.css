@@ -1,0 +1,59 @@
+.hotel-background {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  .list-top-hotel {
+    .hotel-card-wrapper {
+      .image-hotel-detail:hover .detail-background {
+        /* CSS khi hover vào phần tử cha */
+        opacity: 0.8;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .detail-background {
+        opacity: 0;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.modal-detail-wrapper {
+  .title-detail-hotel {
+    margin-top: 30px;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e4e2e2;
+    font-size: 16px;
+    color: #2b2b2b;
+    font-weight: 600;
+  }
+  .note-hotel-italic {
+    font-weight: 700;
+    font-style: italic;
+    font-size: 1em;
+  }
+}
+
+.search-hotel-background {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  width: 800px;
+  .head-title-5 {
+    color: #0194f3;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 700;
+  }
+  .head-title-6 {
+    color: #031213;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}

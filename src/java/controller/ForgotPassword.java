@@ -1,6 +1,5 @@
 package controller;
 
-import dal.AccountDAO;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.Random;
@@ -19,7 +18,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Account;
 
 /**
  * Servlet implementation class ForgotPassword

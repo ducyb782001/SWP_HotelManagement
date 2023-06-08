@@ -1,6 +1,5 @@
 package controller;
 
-import dal.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -13,7 +12,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Account;
 
 /**
  * Servlet implementation class ValidateOtp
@@ -35,8 +33,8 @@ public class ValidateOtp extends HttpServlet {
 		HttpSession session=request.getSession();
 		int otp=(int)session.getAttribute("otp");
                 int accountId=(int)session.getAttribute("accountId");
-                AccountDAO adao = new AccountDAO();
-                Account ac = adao.getAccountById(accountId);
+//                AccountDAO adao = new AccountDAO();
+//                Account ac = adao.getAccountById(accountId);
 		
 		
 		
@@ -45,7 +43,7 @@ public class ValidateOtp extends HttpServlet {
 		
 		if (value==otp) 
 		{
-                                request.setAttribute("account", ac);
+//                                request.setAttribute("account", ac);
 				request.setAttribute("email", request.getParameter("email"));
 				request.setAttribute("status", "success");
 			  dispatcher=request.getRequestDispatcher("newPassword.jsp");

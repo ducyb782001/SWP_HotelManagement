@@ -33,7 +33,7 @@ public class SetRoomControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
        int roomNo = Integer.parseInt(request.getParameter("roomNo"));
        RoomDAO dao = new RoomDAO();
-       dao.setAvaiRoomInValid(roomNo);
+//       dao.setAvaiRoomInValid(roomNo);
        response.sendRedirect("reservation");
        
     } 

@@ -7,13 +7,10 @@ package controller;
 
 import dal.RoomDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import model.RoomTypes;
 
 /**
  *
@@ -32,9 +29,7 @@ public class HomeControl extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         RoomDAO dao = new RoomDAO();
-         ArrayList<RoomTypes> listRT = dao.getRoomType();
         
-        request.setAttribute("listRT", listRT);
         request.getRequestDispatcher("home.jsp").forward(request, response);
        
         

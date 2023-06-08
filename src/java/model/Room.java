@@ -8,119 +8,72 @@ package model;
  *
  * @author Admin
  */
-public class Room extends RoomTypes{
-    private int roomNo;
-    
-    private String type;
-    private String availability;
+public class Room{
+    private String id;
+    private String roomNumber;
+    private int floor;
+    private RoomType type;
+    private StatusRoom status;
+    private String description;
 
-    /**
-     *
-     */
     public Room() {
     }
 
-    /**
-     *
-     * @param roomNo
-     * @param type
-     * @param availability
-     */
-    public Room(int roomNo, String type, String availability) {
-        this.roomNo = roomNo;
+    public Room(String id, String roomNumber, int floor, RoomType type, StatusRoom status, String description) {
+        this.id = id;
+        this.roomNumber = roomNumber;
+        this.floor = floor;
         this.type = type;
-        this.availability = availability;
+        this.status = status;
+        this.description = description;
     }
 
-    /**
-     *
-     * @param typeId
-     * @param name
-     * @param bed
-     * @param numberRoom
-     * @param maxOccupancy
-     * @param price
-     * @param service
-     * @param image
-     * @param details
-     * @param roomNo
-     * @param type
-     * @param availability
-     */
-    public Room( int typeId, String name, String bed, int numberRoom, int maxOccupancy, double price, String service, String image, String details,int roomNo, String type, String availability) {
-        super(typeId, name, bed, numberRoom, maxOccupancy, price, service, image, details);
-        this.roomNo = roomNo;
-        this.type = type;
-        this.availability = availability;
-    }
-    
-    /**
-     *
-     * @return
-     */
-    public int getRoomNo() {
-        return roomNo;
+    public String getId() {
+        return id;
     }
 
-    /**
-     *
-     * @param roomNo
-     */
-    public void setRoomNo(int roomNo) {
-        this.roomNo = roomNo;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    /**
-     *
-     * @return
-     */
-    public String getType() {
+    public String getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
+    }
+
+    public RoomType getType() {
         return type;
     }
 
-    /**
-     *
-     * @param type
-     */
-    public void setType(String type) {
+    public void setType(RoomType type) {
         this.type = type;
     }
 
-    /**
-     *
-     * @return
-     */
-    public String getAvailability() {
-        return availability;
+    public StatusRoom getStatus() {
+        return status;
     }
 
-    /**
-     *
-     * @param availability
-     */
-    public void setAvailability(String availability) {
-        this.availability = availability;
+    public void setStatus(StatusRoom status) {
+        this.status = status;
     }
 
-    /**
-     *
-     * @return
-     */
-    @Override
-    public String toString() {
-        return super.toString() +  "Room{" + "roomNo=" + roomNo + ", type=" + type + ", availability=" + availability + '}'+ "name= "+ getName() ;
+    public String getDescription() {
+        return description;
     }
 
- 
- 
-    
-
-  
-
-   
-
-   
-    
-    
+    public void setDescription(String description) {
+        this.description = description;
+    }
     
 }

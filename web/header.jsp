@@ -39,6 +39,9 @@
         <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
         <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="css/style_2.css" type="text/css">
+        <link href="css/hoteldetail.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     </head>
 
     <body>
@@ -74,7 +77,7 @@
             </div>
             <nav class="mainmenu mobile-menu">
                 <ul>
-                    <li class="active"><a href="./home.jsp">Homee</a></li>
+                    <li class="active"><a href="./home.jsp">Home</a></li>
                     <li><a href="./room.jsp">Rooms</a></li>
                     <li><a href="./about-us.jsp">About Us</a></li>
                     <li><a href="room.jsp">Room Details</a>

@@ -5,7 +5,6 @@
 
 package controller;
 
-import dal.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,7 +12,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Account;
 
 /**
  *
@@ -75,17 +73,17 @@ public class NewPasswordControl extends HttpServlet {
               
 
 		if (newPassword != null && confPassword != null && newPassword.equals(confPassword)) {
-                    AccountDAO dao = new AccountDAO();
-                    dao.updatePass(newPassword, accountId);
+//                    AccountDAO dao = new AccountDAO();
+//                    dao.updatePass(newPassword, accountId);
                     request.setAttribute("mess6", "Reset Password Successfull!!");
                     request.getRequestDispatcher("login.jsp").forward(request, response);
 
 
 		}else{
                     request.setAttribute("mess5", "Password does not match");
-                    AccountDAO adao = new AccountDAO();
-                    Account ac = adao.getAccountById(accountId);
-                    request.setAttribute("account", ac);
+//                    AccountDAO adao = new AccountDAO();
+//                    Account ac = adao.getAccountById(accountId);
+//                    request.setAttribute("account", ac);
                     request.getRequestDispatcher("newPassword.jsp").forward(request, response);
                 }
     }

@@ -15,9 +15,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import model.ReservationDetail;
-import model.RoomTypes;
-import model.RoomTypesInReservation;
 
 /**
  *
@@ -62,7 +59,7 @@ public class BookRoom extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         RoomDAO dao = new RoomDAO();
-        ArrayList<RoomTypes> listrt = dao.getAllRoomType();
+//        ArrayList<RoomTypes> listrt = dao.getAllRoomType();
         Cookie [] arr = request.getCookies();
         String txt="";
         if(arr!=null){
@@ -73,16 +70,16 @@ public class BookRoom extends HttpServlet {
                 
             }
         }
-        ReservationDetail redetail = new ReservationDetail(txt, listrt);
-        ArrayList<RoomTypesInReservation> listrein = redetail.getListIn();
-        int n;
-        if(listrein != null){
-            n=listrein.size();
-        }else{
-            n=0;
-        }
-        request.setAttribute("size", n);
-        request.setAttribute("listRoomType", listrt);
+//        ReservationDetail redetail = new ReservationDetail(txt, listrt);
+//        ArrayList<RoomTypesInReservation> listrein = redetail.getListIn();
+//        int n;
+//        if(listrein != null){
+//            n=listrein.size();
+//        }else{
+//            n=0;
+//        }
+//        request.setAttribute("size", n);
+//        request.setAttribute("listRoomType", listrt);
         request.getRequestDispatcher("roombooking2.jsp").forward(request, response);
         
     } 

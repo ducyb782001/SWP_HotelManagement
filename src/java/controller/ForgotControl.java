@@ -4,14 +4,12 @@
  */
 package controller;
 
-import dal.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Account;
 
 /**
  *
@@ -73,15 +71,15 @@ public class ForgotControl extends HttpServlet {
             throws ServletException, IOException {
         String userName = request.getParameter("username");
 
-        AccountDAO adao = new AccountDAO();
-        Account a = adao.checkAccountExist(userName);
-        if (a == null) {
-            request.setAttribute("mess4", "Users Name does not exist");
-            request.getRequestDispatcher("forgot.jsp").forward(request, response);
-        }else{
-            request.setAttribute("acc",a );
-            request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
-        }
+//        AccountDAO adao = new AccountDAO();
+//        Account a = adao.checkAccountExist(userName);
+//        if (a == null) {
+//            request.setAttribute("mess4", "Users Name does not exist");
+//            request.getRequestDispatcher("forgot.jsp").forward(request, response);
+//        }else{
+//            request.setAttribute("acc",a );
+//            request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
+//        }
     }
 
     /**

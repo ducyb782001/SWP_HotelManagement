@@ -5,7 +5,6 @@
 
 package controller;
 
-import dal.AccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,7 +12,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import model.Account;
 
 /**
  *
@@ -31,9 +29,9 @@ public class LoadAccountControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-      AccountDAO adao = new AccountDAO();
-        ArrayList<Account> listA = adao.getallAccount();
-        request.setAttribute("listA", listA);
+//      AccountDAO adao = new AccountDAO();
+//        ArrayList<Account> listA = adao.getallAccount();
+//        request.setAttribute("listA", listA);
         request.getRequestDispatcher("manageraccount.jsp").forward(request, response);
     } 
 

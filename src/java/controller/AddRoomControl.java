@@ -12,7 +12,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.RoomTypes;
 
 /**
  *
@@ -62,7 +61,7 @@ public class AddRoomControl extends HttpServlet {
         RoomDAO dao = new RoomDAO();
        
         
-        dao.addRoom(typeid, type);
+//        dao.addRoom(typeid, type);
         response.sendRedirect("room");
         
     }
