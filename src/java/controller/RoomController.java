@@ -163,6 +163,7 @@ public class RoomController extends HttpServlet {
             minBathRoom = Integer.parseInt(request.getParameter("minBathRoom"));
             doGet(request, response);
             break;
+
             case "book":
                 String[] selectedRooms = request.getParameterValues("roomID");
                 if (selectedRooms != null) {
@@ -178,6 +179,13 @@ public class RoomController extends HttpServlet {
             case "find":
                 checkIn = Date.valueOf(request.getParameter("datein"));
                 checkOut = Date.valueOf(request.getParameter("dateout"));
+                
+                
+                
+                
+                
+                
+                
                 doGet(request, response);
         }
     }
