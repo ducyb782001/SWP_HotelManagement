@@ -96,6 +96,14 @@
         <servlet-name>RoomController</servlet-name>
         <servlet-class>controller.RoomController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddToCart</servlet-name>
+        <servlet-class>controller.AddToCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>notificationController</servlet-name>
+        <servlet-class>controller.notificationController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SignupControl</servlet-name>
         <url-pattern>/signup</url-pattern>
@@ -175,6 +183,14 @@
     <servlet-mapping>
         <servlet-name>RoomController</servlet-name>
         <url-pattern>/room</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCart</servlet-name>
+        <url-pattern>/addCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>notificationController</servlet-name>
+        <url-pattern>/notification</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

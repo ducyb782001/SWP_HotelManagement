@@ -18,6 +18,7 @@ public class RoomType {
     private int bed;
     private int numberOfRoom;
     private int bathroom;
+    private String image;
 
     public RoomType() {
     }
@@ -33,6 +34,21 @@ public class RoomType {
         this.numberOfRoom = numberOfRoom;
         this.bathroom = bathroom;
     }
+
+    public RoomType(int id, String name, double price, boolean status, String description, int maxPeople, int bed, int numberOfRoom, int bathroom, String image) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.status = status;
+        this.description = description;
+        this.maxPeople = maxPeople;
+        this.bed = bed;
+        this.numberOfRoom = numberOfRoom;
+        this.bathroom = bathroom;
+        this.image = image;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -104,6 +120,14 @@ public class RoomType {
 
     public void setBathroom(int bathroom) {
         this.bathroom = bathroom;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
     
     

@@ -23,7 +23,6 @@
                     <nav class="mainmenu">
                         <ul>
                             <li class="active"><a href="./home">Home</a></li>
-                            <li><a href="room">Rooms</a></li>
                             <li><a href="./about-us.jsp">About Us</a></li>
 
                             <li><a href="./blog.jsp">News</a></li>
@@ -34,11 +33,11 @@
                                         <li><a href="loadaccount">User</a></li>
                                         <li><a href="room">Room</a></li>
                                         <li><a href="reservation">Reservation</a></li>
-                                       
+
                                     </ul>
                                 </li>
-                                </c:if>
-                                <c:if test="${sessionScope.acc.role.id == 7}">
+                            </c:if>
+                            <c:if test="${sessionScope.acc.role.id == 7}">
                                 <li><a href="room">Users</a>
                                     <ul class="dropdown">
                                         <li><a href="information">Information</a></li>
@@ -46,10 +45,10 @@
                                         <li><a href="#"></a></li>
                                     </ul>
                                 </li>
-                                </c:if>
+                            </c:if>
                         </ul>
                     </nav>
-                    
+
 
                 </div>
             </div>
@@ -71,48 +70,40 @@
                     <a href="room.jsp" class="primary-btn">Discover Now</a>
                 </div>
             </div>
-            
-                <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
-                    <div class="booking-form">
-                        <h3>Booking Your Hotel</h3>
-                        <form action="booking" method="post">
-                            <div class="check-date">
-                                <label for="date-in">Check In:</label>
-                                <input name="datein"type="date"   required>
-                                
-                            </div>
-                            <div class="check-date">
-                                <label for="date-out">Check Out:</label>
-                                <input name="dateout"type="date"   required>
-                               
-                            </div>
-                            <input value="1"type="hidden" name="id" ><br>
-                            <input value="<%=dateString%>"type="hidden" name="bookingdate" > 
-<!--                            <div class="select-option"> 
-                                <label for="guest">Guests:</label>
-                                <select name="maxoccupacity">
-                                    <option value="2">2 Adults</option>
-                                    <option value="3">3 Adults</option>
-                                    <option value="4">4 Adults</option>
-                                    <option value="5">5 Adults</option>
-                                </select>
-                            </div>-->
-                            <div><!--
-                                
--->                            </div>
-                            <div class="select-option">
-                                <label for="room">Room:</label>
-                                <select name="numberroom" id="room">
-                                    <option value="1">1 Room</option>
-                                    <option value="2">2 Room</option>
-                                    
-                                </select>
-                            </div>
-                            <button type="submit">Check</button>
-                        </form>
-                    </div>
+
+            <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
+                <div class="booking-form">
+                    <h3>Booking Your Hotel</h3>
+                    <form action="room" method="post" id="frm-rooms">
+                        <input type="hidden" name="action" value="find"/>
+                        <div class="check-date" id="checkIn">
+                            <label for="date-in">Check In:</label>
+                            <input name="datein" type="date" required>
+                        </div>
+                        <div class="check-date" >
+                            <label for="date-out">Check Out:</label>
+                            <input name="dateout"type="date" id="checkOut"  required>
+                        </div>
+                        <input value="1"type="hidden" name="id" ><br>
+                        <input value="<%=dateString%>"type="hidden" name="bookingdate" > 
+                        <!--                            <div class="select-option"> 
+                                                        <label for="guest">Guests:</label>
+                                                        <select name="maxoccupacity">
+                                                            <option value="2">2 Adults</option>
+                                                            <option value="3">3 Adults</option>
+                                                            <option value="4">4 Adults</option>
+                                                            <option value="5">5 Adults</option>
+                                                        </select>
+                                                    </div>-->
+                        <div><!--
+
+                            -->                            </div>
+
+                        <button type="button" onclick="bookRooms()">Check</button>
+                    </form>
                 </div>
-            
+            </div>
+
         </div>
     </div>
     <div class="hero-slider owl-carousel">
@@ -490,14 +481,14 @@
                     </div>
                 </div>
                 <div class="col-lg-3 offset-lg-1">
-                   <div class="ft-contact">
-                            <h6>Contact Us</h6>
-                            <ul>
-                                <li>(12) 345 67890</li>
-                                <li>hotelbookingsystem.01@gmail.com</li>
-                                <li>Khu đô thị FPT City, Đà Nẵng</li>
-                            </ul>
-                        </div>
+                    <div class="ft-contact">
+                        <h6>Contact Us</h6>
+                        <ul>
+                            <li>(12) 345 67890</li>
+                            <li>hotelbookingsystem.01@gmail.com</li>
+                            <li>Khu đô thị FPT City, Đà Nẵng</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-lg-3 offset-lg-1">
                     <div class="ft-newslatter">
@@ -523,7 +514,7 @@
                         <li><a href="#">Environmental Policy</a></li>
                     </ul>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -543,6 +534,24 @@
 <script src="js/jquery.slicknav.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/main.js"></script>
+<script>
+                            function bookRooms() {
+                                var form = document.getElementById('frm-rooms');
+                                if (${sessionScope.acc == null}) {
+                                    alert("You need to login to booking");
+                                } else {
+                                    var checkIn = document.getElementById("checkIn");
+                                    var checkOut = document.getElementById("checkOut");
+                                    var inValue = checkIn.value;
+                                    var outValue = checkOut.value;
+                                    if (inValue !== "" && outValue !== "") {
+                                        form.submit();
+                                    } else {
+                                        alert("Please input check in and check out date!");
+                                    }
+                                }
+                            }
+</script>
 </body>
 
 </html>

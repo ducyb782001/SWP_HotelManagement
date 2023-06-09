@@ -1,0 +1,13 @@
+.back {
+  background: #e2e2e260;
+  width: 100%;
+}
+
+.notification-table-wrapper {
+  background-color: white;
+  width: 590px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  padding: 12px;
+}

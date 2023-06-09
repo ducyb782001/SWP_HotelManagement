@@ -7,6 +7,7 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.RoomType;
@@ -33,12 +34,38 @@ public class RoomTypeDAO extends DBContext {
                         rs.getInt("Max_people"),
                         rs.getInt("Bed"),
                         rs.getInt("Number_Of_Room"),
-                        rs.getInt("Bathroom"));
+                        rs.getInt("Bathroom"),
+                        rs.getString("image"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(RoomDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public ArrayList<RoomType> getAll() {
+        ArrayList<RoomType> list = new ArrayList<>();
+        try {
+            String sql = "SELECT *\n"
+                    + "  FROM [Type_Room]";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                list.add(new RoomType(rs.getInt("typeID"),
+                        rs.getString("typeName"),
+                        rs.getDouble("price"),
+                        rs.getBoolean("status"),
+                        rs.getString("description"),
+                        rs.getInt("Max_people"),
+                        rs.getInt("Bed"),
+                        rs.getInt("Number_Of_Room"),
+                        rs.getInt("Bathroom"),
+                        rs.getString("image")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RoomDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
 
 }
