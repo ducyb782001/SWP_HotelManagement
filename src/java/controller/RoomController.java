@@ -4,8 +4,12 @@
  */
 package controller;
 
+import dal.RequestDAO;
+import dal.Request_RoomDAO;
+import dal.Request_StaffDAO;
 import dal.RoomDAO;
 import dal.RoomTypeDAO;
+import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,6 +21,8 @@ import jakarta.servlet.http.HttpSession;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import model.Room;
 import model.RoomType;
 import model.User;
@@ -122,7 +128,6 @@ public class RoomController extends HttpServlet {
         request.setAttribute("currentPage", page);
         request.setAttribute("listRoom", roomAvailables);
         request.getRequestDispatcher("room.jsp").forward(request, response);
-
     }
 
     /**
@@ -139,6 +144,7 @@ public class RoomController extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("acc");
         RoomDAO rDao = new RoomDAO();
+        RequestDAO reDao = new RequestDAO();
         String action = request.getParameter("action");
         switch (action) {
             case "search":
@@ -165,10 +171,30 @@ public class RoomController extends HttpServlet {
             break;
 
             case "book":
+
+                UserDAO uDao = new UserDAO();
+                Request_RoomDAO rrDao = new Request_RoomDAO();
+                Request_StaffDAO rsDao = new Request_StaffDAO();
+
+                //list all user with role receptionist
+                ArrayList<User> receps = uDao.getUserByRole(2);
                 String[] selectedRooms = request.getParameterValues("roomID");
+
+                //create request and send to receptionist
+                int count = reDao.countTotal();
+                count++;
+                String requestID = "RE" + count;
+                reDao.createRequest(requestID, user.getId());
+
+                //send request to all receptionist
+                for (User recep : receps) {
+                    rsDao.createRequest(requestID, recep.getId());
+                }
+
                 if (selectedRooms != null) {
                     for (String selectedRoom : selectedRooms) {
                         rDao.bookRoom(selectedRoom);
+                        rrDao.createRequestRoom(requestID, selectedRoom, checkIn, checkOut);
                     }
                     Cookie userNameCookieRemove = new Cookie("cart_" + user.getTelephone(), "");
                     userNameCookieRemove.setMaxAge(0);
@@ -179,13 +205,6 @@ public class RoomController extends HttpServlet {
             case "find":
                 checkIn = Date.valueOf(request.getParameter("datein"));
                 checkOut = Date.valueOf(request.getParameter("dateout"));
-                
-                
-                
-                
-                
-                
-                
                 doGet(request, response);
         }
     }
@@ -200,8 +219,11 @@ public class RoomController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private Room getRoomByID(String roomID) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    public static void main(String[] args) {
+        UserDAO uDao = new UserDAO();
 
+        //list all user with role receptionist
+        ArrayList<User> receps = uDao.getUserByRole(2);
+        System.out.println(receps.size());
+    }
 }
