@@ -97,15 +97,16 @@
                         <div class="col">
                             <div
                                 class="border border-secondary rounded-2 ps-2 pe-2 pt-1 pb-1 d-flex align-items-center gap-2">
-                                $ <input name="minPrice" style="border: none; outline:none;" 
-                                         min="1" step="1" type="number" class="form-control" value="${minPrice}"
+                                $ <input name="minPrice" style="border: none; outline:none;" id="minPrice"
+                                         min="1" step="1" type="number" oninput="validateMin()"
+                                         class="form-control" value="${minPrice}"
                                          placeholder="00.000000">
                             </div>
                         </div>
                         <div class="col">
                             <div class="border border-secondary rounded-2 ps-2 pe-2 pt-1 pb-1 d-flex align-items-center gap-2"
                                  style="height: 46px;">
-                                $ <input name="maxPrice" style="border: none; outline:none;" 
+                                $ <input name="maxPrice" style="border: none; outline:none;"  oninput="validateMax()" id="maxPrice"
                                          min="1" step="1" type="number" class="form-control" value="${maxPrice}"
                                          placeholder="9999999999999">
                             </div>
@@ -546,6 +547,29 @@ crossorigin="anonymous"></script>
                                         btn.disabled = false;
                                         btn.style.backgroundColor = 'white';
                                         btn.style.color = 'green';
+                                    }
+                                    function validateMin() {
+                                        var input = document.getElementById("minPrice");
+                                        var value = input.value;
+
+                                        if (value < 0) {
+                                            input.value = Math.abs(value);
+                                        }
+                                    }
+                                    function validateMax() {
+                                        var minInput = document.getElementById("minPrice");
+                                        var maxInput = document.getElementById("maxPrice");
+
+                                        var minValue = parseFloat(minInput.value);
+                                        var maxValue = parseFloat(maxInput.value);
+
+                                        if (maxValue < 0) {
+                                            maxInput.value = Math.abs(maxValue);
+                                        }
+
+                                        if (maxValue < minValue) {
+                                            maxInput.value = minValue;
+                                        }
                                     }
 </script>  
 <script src="js/jquery-3.3.1.min.js"></script>

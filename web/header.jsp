@@ -43,6 +43,73 @@
         <link href="css/notification.css" rel="stylesheet" type="text/css"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <style>
+            #snackbar {
+                visibility: hidden;
+                min-width: 250px;
+                margin-left: -125px;
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+                border-radius: 2px;
+                padding: 16px;
+                position: fixed;
+                z-index: 1;
+                left: 50%;
+                top: 30px; /* Change the bottom position to top position */
+                font-size: 17px;
+            }
+
+            #snackbar.show {
+                visibility: visible;
+                -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+                animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            }
+
+            @-webkit-keyframes fadein {
+                from {
+                    top: 0;
+                    opacity: 0;
+                } /* Change the bottom position to top position */
+                to {
+                    top: 30px;
+                    opacity: 1;
+                } /* Change the bottom position to top position */
+            }
+
+            @keyframes fadein {
+                from {
+                    top: 0;
+                    opacity: 0;
+                } /* Change the bottom position to top position */
+                to {
+                    top: 30px;
+                    opacity: 1;
+                } /* Change the bottom position to top position */
+            }
+
+            @-webkit-keyframes fadeout {
+                from {
+                    top: 30px;
+                    opacity: 1;
+                } /* Change the bottom position to top position */
+                to {
+                    top: 0;
+                    opacity: 0;
+                } /* Change the bottom position to top position */
+            }
+
+            @keyframes fadeout {
+                from {
+                    top: 30px;
+                    opacity: 1;
+                } /* Change the bottom position to top position */
+                to {
+                    top: 0;
+                    opacity: 0;
+                } /* Change the bottom position to top position */
+            }
+        </style>
     </head>
 
     <body>
@@ -50,7 +117,17 @@
         <div id="preloder">
             <div class="loader"></div>
         </div>
-
+        <c:if test="${msg != null}">
+            <!-- Navbar display message -->
+            <div id="snackbar">${msg}</div>
+            <script>
+                var x = document.getElementById("snackbar");
+                    x.className = "show";
+                    setTimeout(function () {
+                        x.className = x.className.replace("show", "");
+                    }, 3000);
+            </script>
+        </c:if>
         <!-- Offcanvas Menu Section Begin -->
         <div class="offcanvas-menu-overlay"></div>
         <div class="canvas-open">

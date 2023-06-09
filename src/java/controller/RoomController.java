@@ -171,7 +171,6 @@ public class RoomController extends HttpServlet {
             break;
 
             case "book":
-
                 UserDAO uDao = new UserDAO();
                 Request_RoomDAO rrDao = new Request_RoomDAO();
                 Request_StaffDAO rsDao = new Request_StaffDAO();
@@ -199,6 +198,7 @@ public class RoomController extends HttpServlet {
                     Cookie userNameCookieRemove = new Cookie("cart_" + user.getTelephone(), "");
                     userNameCookieRemove.setMaxAge(0);
                     response.addCookie(userNameCookieRemove);
+                    session.setAttribute("msg", "Booking successfull! Wait for our to comfirm!");
                     response.sendRedirect("home");
                 }
                 break;
@@ -219,11 +219,4 @@ public class RoomController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public static void main(String[] args) {
-        UserDAO uDao = new UserDAO();
-
-        //list all user with role receptionist
-        ArrayList<User> receps = uDao.getUserByRole(2);
-        System.out.println(receps.size());
-    }
 }

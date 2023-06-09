@@ -89,12 +89,8 @@ public class UserDAO extends DBContext {
             Role role = null;
             RoleDAO rDao = new RoleDAO();
             User manager = null;
-            if (rs.next()) {
-                try {
-                    role = rDao.getRoleByID(rs.getInt("Role"));
-                } catch (Exception e) {
-                    role = null;
-                }
+            while (rs.next()) {
+                role = rDao.getRoleByID(rs.getInt("Role"));
                 manager = getUserByID(rs.getInt("ManagerID"));
                 list.add(new User(rs.getInt("userID"),
                         rs.getString("Full_Name"),

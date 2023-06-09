@@ -48,8 +48,6 @@
                             </c:if>
                         </ul>
                     </nav>
-
-
                 </div>
             </div>
         </div>
@@ -78,11 +76,11 @@
                         <input type="hidden" name="action" value="find"/>
                         <div class="check-date" id="checkIn">
                             <label for="date-in">Check In:</label>
-                            <input name="datein" type="date" required>
+                            <input name="datein" type="date" id="check-in" min="${now}">
                         </div>
                         <div class="check-date" >
                             <label for="date-out">Check Out:</label>
-                            <input name="dateout"type="date" id="checkOut"  required>
+                            <input name="dateout" type="date" id="check-out"  min="${now}">
                         </div>
                         <input value="1"type="hidden" name="id" ><br>
                         <input value="<%=dateString%>"type="hidden" name="bookingdate" > 
@@ -538,16 +536,25 @@
                             function bookRooms() {
                                 var form = document.getElementById('frm-rooms');
                                 if (${sessionScope.acc == null}) {
-                                    alert("You need to login to booking");
+                                    alert("You need to login to book room.");
                                 } else {
-                                    var checkIn = document.getElementById("checkIn");
-                                    var checkOut = document.getElementById("checkOut");
+                                    var checkIn = document.getElementById("check-in");
+                                    var checkOut = document.getElementById("check-out");
+
                                     var inValue = checkIn.value;
                                     var outValue = checkOut.value;
+
+                                    var dateIn = new Date(inValue);
+                                    var dateOut = new Date(outValue);
+
                                     if (inValue !== "" && outValue !== "") {
-                                        form.submit();
+                                        if (dateIn <= dateOut) {
+                                            form.submit();
+                                        } else {
+                                            alert("Check-out date must be greater or equal to the check-in date.");
+                                        }
                                     } else {
-                                        alert("Please input check in and check out date!");
+                                        alert("Please input Check-in and Check-out dates");
                                     }
                                 }
                             }

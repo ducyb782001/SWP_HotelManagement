@@ -5,12 +5,13 @@
 
 package controller;
 
-import dal.RoomDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.time.LocalDate;
 
 /**
  *
@@ -28,11 +29,17 @@ public class HomeControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        RoomDAO dao = new RoomDAO();
         
+        LocalDate now = LocalDate.now();
+        request.setAttribute("now", now);
+        
+        //get message if have
+        HttpSession session = request.getSession();
+        String msg = (String)session.getAttribute("msg");
+        session.setAttribute("msg", null);
+        
+        request.setAttribute("msg", msg);
         request.getRequestDispatcher("home.jsp").forward(request, response);
-       
-        
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
